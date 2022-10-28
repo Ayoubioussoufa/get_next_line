@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 09:31:54 by aybiouss          #+#    #+#             */
-/*   Updated: 2022/10/28 13:34:19 by aybiouss         ###   ########.fr       */
+/*   Updated: 2022/10/28 20:16:58 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!s)
 		return (NULL);
 	s = ft_strcat(s1, s2);
-	return (S);
+	return (s);
 }
 
 char	*ft_strdup(char *str)
