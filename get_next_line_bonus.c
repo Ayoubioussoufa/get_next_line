@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 09:31:20 by aybiouss          #+#    #+#             */
-/*   Updated: 2022/10/31 15:39:57 by aybiouss         ###   ########.fr       */
+/*   Created: 2022/10/31 15:27:08 by aybiouss          #+#    #+#             */
+/*   Updated: 2022/10/31 15:50:11 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <unistd.h>
+#include "get_next_line_bonus.h"
 
 char	*kept_one(char **str, int newline)
 {
@@ -49,49 +48,28 @@ int	check_newline(char *str)
 char	*get_next_line(int fd)
 {
 	char		buf[BUFFER_SIZE + 1];
-	static char	*all;
+	static char	*all[OPEN_MAX];
 	char		*line;
 	int			length;
 	int			newline;
 
 	length = read(fd, buf, BUFFER_SIZE);
-	if (!all && length >= 0)
-		all = ft_strdup("");
+	if (!all[fd] && length >= 0)
+		all[fd] = ft_strdup("");
 	while (length >= 0)
 	{
 		buf[length] = 0;
-		all = ft_strjoin(all, buf);
-		newline = check_newline(all);
+		all[fd] = ft_strjoin(all[fd], buf);
+		newline = check_newline(all[fd]);
 		if (newline != -1)
-			return (returned_line(&line, &all, newline));
-		else if (!length && !all[0])
+			return (returned_line(&line, &all[fd], newline));
+		else if (!length && !all[fd][0])
 			break ;
 		else if (!length)
-			return (kept_one(&all, 0));
+			return (kept_one(&all[fd], 0));
 		length = read(fd, buf, BUFFER_SIZE);
 	}
-	free(all);
-	all = NULL;
+	free(all[fd]);
+	all[fd] = NULL;
 	return (NULL);
 }
-
-// int	main()
-// {
-// 	int	fd = open("dddd", O_RDONLY);
-// 	// char *str = get_next_line(fd);
-// 	// while (*str)
-// 	// {
-// 	// 	printf("%s", str);
-// 	// 	str = get_next_line(fd);
-// 	// }
-// 	printf("%s\n", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	// printf("%s", get_next_line(fd));
-// 	// printf("%s", get_next_line(fd));
-// 	// printf("%s", get_next_line(fd));
-// 	// printf("%s", get_next_line(fd));
-// 	// printf("%s", get_next_line(fd));
-// 	// printf("%s", get_next_line(fd));
-// 	// printf("%s", get_next_line(fd));
-// 	return (0);
-// }

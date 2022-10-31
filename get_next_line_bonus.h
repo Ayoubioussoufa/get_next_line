@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 09:31:50 by aybiouss          #+#    #+#             */
-/*   Updated: 2022/10/31 15:39:40 by aybiouss         ###   ########.fr       */
+/*   Created: 2022/10/31 15:27:03 by aybiouss          #+#    #+#             */
+/*   Updated: 2022/10/31 15:38:29 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <stdlib.h>
 # include <stdio.h>
@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include <sys/types.h>
 # include <string.h>
+# include <limits.h>
 
 char	*get_next_line(int fd);
 size_t	ft_strlen(char *str);
