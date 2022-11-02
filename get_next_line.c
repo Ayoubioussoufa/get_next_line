@@ -6,12 +6,15 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 09:31:20 by aybiouss          #+#    #+#             */
-/*   Updated: 2022/10/31 15:39:57 by aybiouss         ###   ########.fr       */
+/*   Updated: 2022/11/02 11:31:31 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <unistd.h>
+
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 1
+#endif
 
 char	*kept_one(char **str, int newline)
 {
@@ -51,7 +54,7 @@ char	*get_next_line(int fd)
 	char		buf[BUFFER_SIZE + 1];
 	static char	*all;
 	char		*line;
-	int			length;
+	ssize_t		length;
 	int			newline;
 
 	length = read(fd, buf, BUFFER_SIZE);
